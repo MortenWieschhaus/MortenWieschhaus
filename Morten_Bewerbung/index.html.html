@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morten Wieschhaus | Fachinformatiker für Anwendungsentwicklung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-blue: #e6f0ff;
+            --blue: #0066cc;
+            --dark-blue: #004080;
+            --black: #222222;
+            --gray: #f5f5f5;
+            --dark-gray: #444444;
+            --accent: #ff6b6b;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(230,240,255,0.95) 100%);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--white);
+            font-size: 1.3rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Bereich */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, rgba(0,102,204,0.1) 0%, rgba(0,64,128,0.1) 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--black);
+            line-height: 1.2;
+        }
+        
+        .hero-text h1 span {
+            color: var(--blue);
+        }
+        
+        .hero-text .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--dark-gray);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-align: center;
+            border: 2px solid var(--blue);
+        }
+        
+        .btn-primary {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.4);
+            background: var(--dark-blue);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+		
+		.hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            padding: 30px;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 10px solid var(--white);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border: 2px dashed var(--blue);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: rotate 30s linear infinite;
+        }
+        
+        .decorative-circle:nth-child(1) {
+            width: 450px;
+            height: 450px;
+            animation-duration: 40s;
+        }
+        
+        .decorative-circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            animation-direction: reverse;
+        }
+        
+        .decorative-dots {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--blue);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+        
+        .dot:nth-child(1) { top: 10%; left: 50%; animation-delay: 0s; }
+        .dot:nth-child(2) { top: 50%; left: 90%; animation-delay: 0.4s; }
+        .dot:nth-child(3) { top: 90%; left: 50%; animation-delay: 0.8s; }
+        .dot:nth-child(4) { top: 50%; left: 10%; animation-delay: 1.2s; }
+        .dot:nth-child(5) { top: 25%; left: 25%; animation-delay: 1.6s; }
+        .dot:nth-child(6) { top: 25%; left: 75%; animation-delay: 2.0s; }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+		
+        /* Über mich */
+        .about {
+            background: var(--white);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--blue);
+            margin-bottom: 25px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+        
+        .motivation-box {
+            background: var(--light-blue);
+            border-left: 4px solid var(--blue);
+            padding: 25px;
+            border-radius: 0 10px 10px 0;
+            margin: 30px 0;
+        }
+        
+        .motivation-box p {
+            font-style: italic;
+            color: var(--dark-blue);
+            margin: 0;
+        }
+        
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--blue);
+            font-size: 1.2rem;
+        }
+        
+        .info-text strong {
+            display: block;
+            font-weight: 600;
+            color: var(--blue);
+        }
+        
+        .about-stats {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--blue);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+        
+        .stat-title {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+        
+        /* Erfahrung */
+        .experience {
+            background: var(--light-blue);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--blue);
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            padding: 30px 0;
+            position: relative;
+            width: 100%;
+        }
+        
+        .timeline-content {
+            width: calc(50% - 60px);
+            padding: 30px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+            border-left: 4px solid var(--blue);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 30px;
+            width: 120px;
+            text-align: center;
+            background: var(--blue);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: calc(100% + 30px);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            left: calc(100% + 30px);
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: var(--blue);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+        
+        .timeline-content p {
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+        }
+        
+        .timeline-content ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+        
+        .document-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .document-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        /* Fähigkeiten */
+        .skills {
+            background: var(--white);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--blue);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            color: var(--blue);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-category h3 i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            color: var(--black);
+            flex-grow: 1;
+        }
+        
+        .skill-check {
+            color: var(--blue);
+            font-size: 1.3rem;
+            margin-left: 10px;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: var(--light-blue);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--blue);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Zertifikate */
+        .certificates {
+            background: var(--light-blue);
+        }
+        
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .certificate-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .certificate-header {
+            background: var(--blue);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .certificate-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .certificate-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .certificate-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certificate-body p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            flex-grow: 1;
+        }
+        
+        .certificate-id {
+            background: var(--light-blue);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--blue);
+            margin-top: 15px;
+        }
+        
+        /* Kontakt */
+        .contact {
+            background: var(--white);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            background: var(--light-blue);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--blue);
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-text {
+            color: var(--dark-gray);
+        }
+        
+        .contact-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--dark-blue);
+        }
+        
+        .contact-simple {
+            flex: 1;
+            background: var(--light-blue);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-simple h3 {
+            font-size: 1.8rem;
+            color: var(--blue);
+            margin-bottom: 20px;
+        }
+
+        .contact-simple p {
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .contact-simple .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Animationen */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes floatIcon {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-10px, 10px); }
+            50% { transform: translate(10px, 15px); }
+            75% { transform: translate(5px, -10px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 50px;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 90px);
+                margin-left: 80px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                left: 0;
+                top: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                height: calc(100vh - 80px);
+                padding: 50px 0;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                font-size: 1.8rem;
+                color: var(--black);
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .about-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Fixed Kontaktbutton */
+        .fixed-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--dark-blue);
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 102, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 102, 204, 0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Kontakt Button -->
+    <div class="fixed-contact">
+        <a href="mailto:mwieschhaus8@gmail.com" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="logo-text">MW</div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#experience">Ausbildung & Erfahrung</a></li>
+                    <li><a href="#skills">Fähigkeiten</a></li>
+                    <li><a href="#certificates">Qualifikationen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Bereich -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hallo, ich bin Morten Wieschhaus<br><span>Auszubildender gesucht im IT-Bereich</span></h1>
+                    <p>Seit einigen Monaten entdecke ich die Welt der Programmierung für mich und bin wirklich begeistert, wie ich mit Code praktische Lösungen gestalten kann. Jetzt suche ich einen Ausbildungsplatz, wo ich dieses neue Interesse vertiefen und professionell einsetzen kann.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn btn-primary">Kontakt aufnehmen</a>
+                        <a href="#skills" class="btn btn-outline">Mein Lernweg</a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <img src="bilder/profilbild.jpg" alt="Morten Wieschhaus" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Über mich -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Über mich</h2>
+                <p>Meine Motivation und berufliche Vision</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Programmieren - mein neues Interesse</h3>
+                    <p>Ich bin Morten Wieschhaus, 20 Jahre alt, und habe vor einiger Zeit mit dem Programmieren begonnen. Was als Neugierde gestartet ist, hat sich schnell zu einem echten Interesse entwickelt. Besonders faszinierend finde ich, wie man mit Code konkrete Probleme lösen kann.</p>
+                    
+                    <div class="motivation-box">
+                        <p>"Ich möchte meine Begeisterung für Technik in die Ausbildung einbringen und suche einen Betrieb, der mir die Chance gibt, praxisnah zu lernen und mich weiterzuentwickeln."</p>
+                    </div>
+                    
+                    <p>Als angehender Fachinformatiker für Anwendungsentwicklung bin ich auf der Suche nach einem Ausbildungsplatz, wo ich meine Grundkenntnisse ausbauen und echte Projekterfahrung sammeln kann. Ich freue mich darauf, in einem Team zu arbeiten und von erfahrenen Kollegen zu lernen.</p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Name</strong>
+                                Morten Wieschhaus
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Geboren</strong>
+                                3. Februar 2005 (20 Jahre)
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>Adresse</strong>
+                                Sundernstraße 20, Haltern am See
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <strong>E-Mail</strong>
+                                mwieschhaus8@gmail.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-number">2023</div>
+                        <div class="stat-title">Abitur abgeschlossen</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-number">3</div>
+                        <div class="stat-title">Programmiersprachen</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-title">Lernprojekte</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-title">Motivation & Einsatz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Erfahrung (in korrekter chronologischer Reihenfolge) -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ausbildung & Erfahrung</h2>
+                <p>Mein Werdegang im Überblick</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 - 2023</div>
+                    <div class="timeline-content">
+						<h3>Abitur</h3>
+						<p><strong>Joseph-König-Gymnasium Haltern am See</strong></p>
+						<a href="zeugnisse/abiturzeugnis.pdf" 
+							class="document-link" 
+							target="_blank">
+							<i class="fas fa-file-pdf"></i> Abiturzeugnis ansehen
+						</a>
+					</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Okt 2018 - Jan 2024</div>
+                    <div class="timeline-content">
+                        <h3>Übungsleiter (Nebentätigkeit)</h3>
+                        <p><strong>ATV Haltern am See 7 Jahre</strong></p>
+						<p><strong>seit 2 Jahren ETUS Haltern & TUS Sythen</strong></p>
+                        <ul>
+                            <li>Organisation und Koordination von Veranstaltungen</li>
+                            <li>Kundenkommunikation und -betreuung</li>
+                            <li>Teamarbeit und eigenverantwortliches Arbeiten</li>
+                            <li>Problemlösung in dynamischen Umgebungen</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Sep 2023 - Okt 2023</div>
+                    <div class="timeline-content">
+                        <h3>Freiwilliges Soziales Jahr</h3>
+                        <p><strong>ATV Haltern am See</strong></p>
+                        <ul>
+                            <li>Organisation und Koordination von Veranstaltungen</li>
+                            <li>Kundenkommunikation und -betreuung</li>
+                            <li>Teamarbeit und eigenverantwortliches Arbeiten</li>
+                            <li>Problemlösung in dynamischen Umgebungen</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Okt 2023 - März 2024</div>
+                    <div class="timeline-content">
+                        <h3>Informatik-Studium (abgebrochen)</h3>
+                        <p><strong>Fernuni-Hagen</strong></p>
+                        <p>Nach einem Semester habe ich mich entschieden, das Studium abzubrechen, um mich vollständig auf eine praktische Ausbildung im IT-Bereich zu konzentrieren.</p>
+                        <p>In dieser Zeit konnte ich bereits erste Einblicke gewinnen in:</p>
+                        <ul>
+                            <li>Grundlagen der Informatik</li>
+                            <li>Programmierung und Algorithmen</li>
+                            <li>Datenbanken und Systemarchitektur</li>
+                        </ul>
+                        <p>Diese Erfahrung hat meine Entscheidung bestärkt, eine Ausbildung zum Fachinformatiker zu beginnen.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Seit 2023</div>
+                    <div class="timeline-content">
+                        <h3>Selbststudium Programmierung</h3>
+                        <p><strong>Online-Lernplattformen (freeCodeCamp.org u.a.)</strong></p>
+                        <p>Seit mehreren Monaten bringe ich mir selbstständig Programmiersprachen bei:</p>
+                        <ul>
+                            <li>Grundlagen HTML und CSS</li>
+                            <li>JavaScript (aktuell im Lernprozess)</li>
+                            <li>Python (Basiskenntnisse aus Schulzeit)</li>
+                            <li>Git und SQL (erste Grundlagen)</li>
+                        </ul>
+                        <p>Ich absolviere regelmäßig Online-Kurse und erstelle eigene Lernprojekte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fähigkeiten -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meine Fähigkeiten</h2>
+                <p>Technische und persönliche Kompetenzen</p>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Technische Fähigkeiten</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS (Grundlagen)</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 60%"></div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript (Anfänger)</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 30%"></div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Python (Grundlagen)</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 40%"></div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Git (Grundlagen)</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 10%"></div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">SQL (Grundlagen)</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 10%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-users"></i> Persönliche Stärken</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Lernbereitschaft</div>
+                        <div class="skill-check">✔</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Problemlösung</div>
+                        <div class="skill-check">✔</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Teamarbeit</div>
+                        <div class="skill-check">✔</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Ehrgeiz</div>
+                        <div class="skill-check">✔</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Selbstmotivation</div>
+                        <div class="skill-check">✔</div>
+                    </div>
+                    
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> Sprachkenntnisse</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Deutsch (Muttersprache)</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Englisch (C1)</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Französisch (B1/B2)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zertifikate -->
+    <section class="certificates" id="certificates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Qualifikationen</h2>
+                <p>Meine offiziellen Nachweise und Lizenzen</p>
+            </div>
+            
+            <div class="certificates-container">
+                <div class="certificate-card">
+                    <div class="certificate-header">
+                        <h3>Allgemeine Hochschulreife</h3>
+                        <div class="certificate-date">Juni 2023</div>
+                    </div>
+                    <div class="certificate-body">
+                        <p>Abiturzeugnis des Joseph-König-Gymnasiums in Haltern am See mit einem Notendurchschnitt von 3,3.</p>
+                        <p>Leistungskurse: Englisch (7 Punkte), Geschichte (7 Punkte)</p>
+                        <p>Sprachnachweise: Englisch (C1), Französisch (B1/B2)</p>
+                        <a href="zeugnisse/abiturzeugnis.pdf" class="document-link" target="_blank">
+                            <i class="fas fa-file-pdf"></i> Zeugnis ansehen
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-header">
+                        <h3>Übungsleiter-C-Lizenz</h3>
+                        <div class="certificate-date">Gültig bis 26.01.2029</div>
+                    </div>
+                    <div class="certificate-body">
+                        <p>Sportartübergreifende Lizenz zur Leitung von Sportgruppen und Trainings. Ausgestellt vom Landessportbund Nordrhein-Westfalen.</p>
+                        <p>Die Lizenz zeigt meine Fähigkeit zur Organisation, Planung und Durchführung von Projekten sowie meine Teamfähigkeit.</p>
+                        <div class="certificate-id">
+                            Lizenznummer: LSBNW-ÜL-C-0847980
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-card">
+                    <div class="certificate-header">
+                        <h3>Online-Kurse Programmierung</h3>
+                        <div class="certificate-date">2023 - laufend</div>
+                    </div>
+                    <div class="certificate-body">
+                        <p>Mehrere abgeschlossene Online-Kurse in:</p>
+                        <ul>
+                            <li>Webentwicklung (HTML, CSS)</li>
+                            <li>JavaScript Grundlagen</li>
+                            <li>Python Grundlagen</li>
+                            <li>Git und SQL Grundlagen</li>
+                        </ul>
+                        <p>Diese Kurse zeigen meine Eigeninitiative und mein Engagement, mir IT-Kenntnisse selbständig anzueignen.</p>
+                        <p>Hauptlernplattform: freeCodeCamp.org</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontakt</h2>
+                <p>So können Sie mich erreichen</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Kontaktinformation</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Adresse</h4>
+                            <p>Sundernstraße 20, 45721 Haltern am See</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telefon</h4>
+                            <p>+49 1523 1919166</p>
+                            <p>02364 965883</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>E-Mail</h4>
+                            <p>mwieschhaus8@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://instagram.com/morten.wie" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-simple">
+                    <h3>Kontaktieren Sie mich</h3>
+                    <p>Ich freue mich auf Ihre Nachricht und die Möglichkeit, Sie persönlich kennenzulernen.</p>
+                    <a href="mailto:mwieschhaus8@gmail.com" class="btn btn-primary">E-Mail senden</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Morten Wieschhaus</div>
+                <p>Zukünftiger Fachinformatiker für Anwendungsentwicklung mit Leidenschaft für Programmierung und Technologie</p>
+                
+                <ul class="footer-links">
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#experience">Ausbildung</a></li>
+                    <li><a href="#skills">Fähigkeiten</a></li>
+                    <li><a href="#certificates">Qualifikationen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                
+                <div class="copyright">
+                    &copy; 2024 Morten Wieschhaus. Alle Rechte vorbehalten.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll-Effekt
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navLinks.classList.remove('active');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Skill-Bar Animation (verbessert)
+        window.addEventListener('scroll', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillsSection = document.getElementById('skills');
+            
+            const sectionTop = skillsSection.offsetTop;
+            const sectionHeight = skillsSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > (sectionTop + sectionHeight - windowHeight - 100)) {
+                skillBars.forEach(bar => {
+                    // Nur animieren, wenn noch nicht animiert wurde
+                    if (!bar.classList.contains('animated')) {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                            bar.classList.add('animated');
+                        }, 300);
+                    }
+                });
+            }
+        });
+        
+        // Animation for section appearance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeIn 1s forwards`;
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
